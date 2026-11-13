@@ -36,3 +36,9 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+### App data written at runtime (journal.json, copied photos) ###
+data/
+
+### Local reference notes ###
+docs/course-project.md
