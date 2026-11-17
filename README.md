@@ -57,6 +57,11 @@ One story per team member.
 | **Activity Scheduling:** As a traveler, I want to schedule daily activities with locations, start times, and estimated durations, so that I can organize my itinerary efficiently. | Weiqi Shen |
 
 
+| **Account Registration:** As a traveler, I want to create a personal account using a username and password, so that I can save and manage my travel information. | Andrew Shen |
+| **Account Login:** As a traveler, I want to log into my existing account, so that I can securely access my personalized travel information. | Andrew Shen |
+| **Personalized Dashboard:** As a traveler, I want to access a dashboard after logging in, so that I can navigate between the different travel planning and journaling features. | Andrew Shen |
+
+
 ## Use cases
 
 ### Write daily journal entry (MVP)
@@ -211,6 +216,85 @@ _Teammates: add your use cases here, marked MVP or later, with the lead's name._
 - If the scheduled date falls outside the trip's travel dates, the system asks the user to select a valid date.
 - If the new activity overlaps with an existing activity, the system warns the user about the scheduling conflict.
 
+### Use Case 8 — Account Registration (MVP)
+
+**Lead:** Andrew Shen
+
+**Related User Story:** Account Registration
+
+**Actor:** Traveler
+
+**Precondition:** The user is not logged into an existing account.
+
+**Description:** The user can create a personal account to store and access their travel information.
+
+**Main Flow:**
+1. The user opens the application and selects the registration option.
+2. The user enters a username, password, and password confirmation.
+3. The system validates the provided information.
+4. The system checks whether the username already exists.
+5. The system creates a new user account and securely stores the account information.
+6. The system confirms successful registration and redirects the user to the login screen.
+
+**Alternative Flow:**
+- If any required fields are empty, the system prompts the user to complete them.
+- If the username already exists, the system requests a different username.
+- If the passwords do not match, the system displays an error message.
+- If the account cannot be saved, the system displays an appropriate error message.
+
+**Postcondition:** A new user account is created and can be used to log into the application.
+
+### Use Case 9 — Account Login (MVP)
+
+**Lead:** Andrew Shen
+
+**Related User Story:** Account Login
+
+**Actor:** Traveler
+
+**Precondition:** The user has an existing registered account.
+
+**Description:** The user can log into their personal account to access their saved travel information and application features.
+
+**Main Flow:**
+1. The user opens the login screen.
+2. The user enters their username and password.
+3. The system retrieves the corresponding account information.
+4. The system verifies the provided credentials.
+5. The system identifies the authenticated user and establishes the current user session.
+6. The system redirects the user to their personalized dashboard.
+
+**Alternative Flow:**
+- If the username or password is empty, the system prompts the user to complete the required fields.
+- If the username or password is incorrect, the system displays an error message.
+- If the account information cannot be retrieved, the system displays an appropriate error message.
+
+**Postcondition:** The user is authenticated and can access the travel information associated with their account.
+
+### Use Case 10 — Access Personalized Dashboard (MVP)
+
+**Lead:** Andrew Shen
+
+**Related User Story:** Personalized Dashboard
+
+**Actor:** Traveler
+
+**Precondition:** The user has successfully logged into their account.
+
+**Description:** The user can navigate between the application's travel planning and journaling features through a personalized dashboard.
+
+**Main Flow:**
+1. The user successfully logs into their account.
+2. The system displays the main dashboard associated with the authenticated user.
+3. The dashboard provides navigation options for trip management, saved trips, journal entries, weather forecasts, and currency conversion.
+4. The user selects their desired feature.
+5. The system opens the corresponding view while maintaining the current user's session.
+
+**Alternative Flow:**
+- If the user logs out, the system clears the current session and returns to the login screen.
+- If the user attempts to access a feature without authentication, the system redirects them to the login screen.
+
+**Postcondition:** The user can navigate between application features and access information associated with their account.
 
 
 ## Entities
@@ -283,6 +367,12 @@ The Frankfurter API will retrieve currency exchange rates to help users estimate
 - Display calculated conversion results.
 
 **Integration Status:** Planned — Not yet tested.
+
+- **User:** Represents a registered user of the application.
+  - Instance variables: `userId`, `username`, `passwordHash`.
+  - Methods: `getUserId()`, `getUsername()`, `getPasswordHash()`.
+ 
+
 ## API usage
 
 _To be added: link to each API's documentation, how the project uses it, and whether the team has called it successfully._
@@ -324,4 +414,9 @@ The application uses Java Swing for its graphical user interface and follows Cle
 
 ## Screenshots
 
+**User Accounts:** Registered user accounts are stored in `data/users.json`, containing unique user IDs, usernames, and securely hashed passwords.
+
+**User Session:** The application maintains the currently authenticated user's ID during runtime. The session is cleared when the user logs out, and user-specific travel information is retrieved using the corresponding user ID.
+
+  
 _Add screenshots or animations as features land._
